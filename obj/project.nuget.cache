@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "HBq10UVGx3mbpcbBoTCVbmvm3Gn5M9zQ+jZdZnhr8HmACsbwiWjBMeIHnjST7rSI/5sEP+VOxFBOb2s9zRX3Tg==",
+  "dgSpecHash": "i78POYoKeqyNgQ2Vs57WsS6R5g7wvnNgn57RYd0w5sgAkNKm2AkKuEXl8EX3wLGekiPxnzSQc8ZJRQCQRHU3AA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\chidc\\OneDrive\\Desktop\\2566.02\\ICE361\\mini_project\\Mini_Project\\Mini_Project.csproj",
+  "projectFilePath": "C:\\Users\\chidc\\OneDrive\\Desktop\\2566.02\\ICE361\\Mini_Project\\Mini_Project\\Mini_Project.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\chidc\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\chidc\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

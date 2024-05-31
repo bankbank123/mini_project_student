@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\chidc\\OneDrive\\Desktop\\2566.02\\ICE361\\mini_project\\Mini_Project\\Mini_Project.csproj": {}
+    "C:\\Users\\chidc\\OneDrive\\Desktop\\2566.02\\ICE361\\Mini_Project\\Mini_Project\\Mini_Project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\chidc\\OneDrive\\Desktop\\2566.02\\ICE361\\mini_project\\Mini_Project\\Mini_Project.csproj": {
+    "C:\\Users\\chidc\\OneDrive\\Desktop\\2566.02\\ICE361\\Mini_Project\\Mini_Project\\Mini_Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\chidc\\OneDrive\\Desktop\\2566.02\\ICE361\\mini_project\\Mini_Project\\Mini_Project.csproj",
+        "projectUniqueName": "C:\\Users\\chidc\\OneDrive\\Desktop\\2566.02\\ICE361\\Mini_Project\\Mini_Project\\Mini_Project.csproj",
         "projectName": "Mini_Project",
-        "projectPath": "C:\\Users\\chidc\\OneDrive\\Desktop\\2566.02\\ICE361\\mini_project\\Mini_Project\\Mini_Project.csproj",
+        "projectPath": "C:\\Users\\chidc\\OneDrive\\Desktop\\2566.02\\ICE361\\Mini_Project\\Mini_Project\\Mini_Project.csproj",
         "packagesPath": "C:\\Users\\chidc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\chidc\\OneDrive\\Desktop\\2566.02\\ICE361\\mini_project\\Mini_Project\\obj\\",
+        "outputPath": "C:\\Users\\chidc\\OneDrive\\Desktop\\2566.02\\ICE361\\Mini_Project\\Mini_Project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\chidc\\AppData\\Roaming\\NuGet\\NuGet.Config",

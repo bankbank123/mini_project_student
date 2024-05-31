@@ -32,12 +32,12 @@
                             id="Student">ข้อมูลนักศึกษา</a>
                     </li>
                 </ul>
-                <form asp-action="Search" method="get" asp-controller="Student" class="search-form">
-                    <div class="search-container">
-                        <label for="searchString">Search by Name:</label>
-                        <input type="text" id="searchString" name="searchString" />
-                        <input type="submit" value="Search" />
-                    </div>
+
+            </div>
+            <div class="navbar-search-container">
+                <form asp-controller="Student" asp-action="Search" method="GET" class="navbar-search-form-container">
+                    <input class="search-input" type="text" name="searchString" placeholder="ค้นหาข้อมูลนักศึกษา..." />
+                    <button class="search-button" type="submit">ค้นหา</button>
                 </form>
             </div>
         </div>

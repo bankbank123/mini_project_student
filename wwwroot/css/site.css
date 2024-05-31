@@ -76,6 +76,24 @@ html {
   color: black;
 }
 
+.navbar-search-container, .navbar-search-form-container {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-input {
+  padding: 10px 0;
+  height: 40px;
+  max-width: 200px;
+  width: 100%;
+}
+
+.search-input:focus[b-k9swouxqfe] {
+  border: none;
+}
 
 
 @media (min-width: 768px) {
@@ -84,7 +102,11 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 

@@ -563,7 +563,7 @@ namespace Mini_Project.Controllers
                                           && p.AddressPresentAmphureId == student.StudentAddressPresent.AddressPresentAmphureId
                                           && p.AddressPresentTambonId == student.StudentAddressPresent.AddressPresentTambonId);
 
-            if (addressHomelandQuery == null || addressPresentQuery == null)
+            if (addressHomelandQuery == null || addressPresentQuery == null || studentFamily == null)
             {
                 return NotFound();
             }
