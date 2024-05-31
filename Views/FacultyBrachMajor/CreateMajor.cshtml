@@ -1,0 +1,68 @@
+﻿@model Mini_Project.Models.Major
+
+@{
+    ViewData["Title"] = "CreateMajor";
+}
+
+<h2>เพิ่มข้อมูลวิชาเอก</h2>
+
+<h4>วิชาเอก</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateMajor">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">คณะ</label>
+                <select class="form-control" asp-items="ViewBag.FacultyID" id="SelectFaculty">
+                    <option value="">เลือกคณะ</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">รหัสสาขา</label>
+                <select asp-for="BranchId" id="branchSelect" class="form-control">
+                    <option value="">เลือกสาขา</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">วิชาเอก</label>
+                <input asp-for="MajorName" class="form-control"/>
+                <span asp-validation-for="MajorName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary my-1" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#SelectFaculty').change(function () {
+                var facultyId = $(this).val();
+                var branchSelect = $('#branchSelect');
+                branchSelect.empty();
+                branchSelect.append('<option value="">เลือกสาขา</option>');
+
+                if (facultyId) {
+                    $.ajax({
+                        url: '@Url.Action("GetBranchesByFacultyId", "FacultyBrachMajor")',
+                        type: 'GET',
+                        data: { facultyId: facultyId },
+                        success: function (data) {
+                            $.each(data, function (index, branch) {
+                                branchSelect.append('<option value="' + branch.branchId + '">' + branch.branchName + '</option>');
+                            });
+                        }
+                    });
+                }
+
+            });
+        });
+    </script>
+}

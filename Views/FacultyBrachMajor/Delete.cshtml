@@ -1,0 +1,283 @@
+﻿@*
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="delete-container">
+    <div class="navbar-delete-container">
+        <button class="navbar-delete" id="faculty" onclick="onShowDeleteFaculty()">คณะ</button>
+        <button class="navbar-delete" id="branch" onclick="onShowDeleteBranch()">สาขา</button>
+        <button class="navbar-delete" id="major" onclick="onShowDeleteMajor()">วิชาเอก</button>
+    </div>
+    <div class="form-faculty-container form-container" id="form_faculty">
+        <label>คณะที่ต้องการลบ</label>
+        <select class="form-control" asp-items="ViewBag.FacultyId" id="SelectFaculty">
+            <option value="">เลือกคณะ</option>
+        </select>
+        <button class="btn btn-danger" onclick="onClickDeleteAlert()">ลบข้อมูล</button>
+    </div>
+    <div class="form-branch-container form-container" id="form_branch">
+        <label>คณะ</label>
+        <select id="SelectFacultyId" class="form-control" asp-items="ViewBag.FacultyId">
+            <option value="">เลือกคณะ</option>
+        </select>
+        <label>สาขาที่ต้องการลบ</label>
+        <select id="SelectBranchIdDelete" class="form-control">
+            <option value="">เลือกสาขา</option>
+        </select>
+        <button class="btn btn-danger" onclick="onClickDeleteAlert()">ลบข้อมูล</button>
+    </div>
+    <div class="form-major-container form-container" id="form_major">
+        <label>คณะ</label>
+        <select id="SelectFacultyIdSearch" class="form-control" asp-items="ViewBag.FacultyId">
+            <option value="">เลือกคณะ</option>
+        </select>
+        <label>สาขา</label>
+        <select id="SelectBranchIdSearch" class="form-control">
+            <option value="">เลือกสาขา</option>
+        </select>
+        <label>วิชาเอกที่ต้องการลบ</label>
+        <select id="majorSelectIdDelete" class="form-control">
+            <option value="">เลือกสาขา</option>
+        </select>
+        <button class="btn btn-danger" onclick="onClickDeleteAlert()">ลบข้อมูล</button>
+    </div>
+</div>
+
+<div class="alert-container" id="alert_container">
+    <svg xmlns="http://www.w3.org/2000/svg" width="72" height="72" fill="currentColor"
+        class="bi bi-exclamation-circle-fill alert-icon" viewBox="0 0 16 16">
+        <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4m.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2" />
+    </svg>
+    <div class="alert-text-container">
+        ยืนยันการลบข้อมูล <br />
+        <span id="alert-item-delete"></span>
+    </div>
+    <div class="alert-confirmed-container">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
+            onclick="onClickDeleteConfirmed()" class="bi bi-check-circle-fill confirmed-icon" viewBox="0 0 16 16">
+            <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
+            class="bi bi-x-circle-fill cancel-icon" onclick="onClickDeleteCancel()" viewBox="0 0 16 16">
+            <path
+                d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z" />
+        </svg>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#SelectFacultyIdSearch').change(function () {
+                var facultyId = $(this).val();
+                var SelectBranchIdSearch = $('#SelectBranchIdSearch');
+                SelectBranchIdSearch.empty();
+                SelectBranchIdSearch.append('<option value="">เลือกสาขา</option>')
+
+                if (facultyId) {
+                    $.ajax({
+                        url: '@Url.Action("GetBranchesByFacultyId", "FacultyBrachMajor")',
+                        type: 'GET',
+                        data: { facultyId: facultyId },
+                        success: function (data) {
+                            $.each(data, function (index, branch) {
+                                SelectBranchIdSearch.append('<option value="' + branch.branchId + '">' + branch.branchName + '</option>');
+                            })
+                        }
+                    });
+                }
+            });
+            $('#SelectFacultyId').change(function () {
+                var facultyId = $(this).val();
+                var SelectBranchIdDelete = $('#SelectBranchIdDelete');
+                SelectBranchIdDelete.empty();
+                SelectBranchIdDelete.append('<option value="">เลือกที่ต้องการจะลบสาขา</option>')
+
+                if (facultyId) {
+                    $.ajax({
+                        url: '@Url.Action("GetBranchesByFacultyId", "FacultyBrachMajor")',
+                        type: 'GET',
+                        data: { facultyId: facultyId },
+                        success: function (data) {
+                            $.each(data, function (index, branch) {
+                                SelectBranchIdDelete.append('<option value="' + branch.branchId + '">' + branch.branchName + '</option>');
+                            });
+
+                        }
+                    });
+                }
+            });
+
+            $('#SelectBranchIdSearch').change(function () {
+                var branchSelectId = $(this).val();
+                var majorSelectId = $('#majorSelectIdDelete');
+                branchSelectId = parseInt(branchSelectId);
+                majorSelectId.empty();
+                majorSelectId.append('<option value="">เลือกวิชาเอก</option>')
+
+                if (branchSelectId) {
+                    $.ajax({
+                        url: '@Url.Action("GetMajorNameByBranch", "FacultyBrachMajor")',
+                        type: 'GET',
+                        data: {
+                            branchId: branchSelectId
+                        },
+                        success: function (data) {
+                            $.each(data, function (index, major) {
+                                majorSelectId.append('<option value="' + major.majorId + '">' + major.majorName + '</option>');
+                            });
+                        }
+                    });
+                }
+            });
+        })
+        function onShowDeleteFaculty() {
+            const faculty = document.getElementById('faculty');
+            const branch = document.getElementById('branch');
+            const major = document.getElementById('major');
+            const faculty_form = document.getElementById('form_faculty');
+            const branch_form = document.getElementById('form_branch');
+            const major_form = document.getElementById('form_major');
+            faculty.classList.add('transition-link');
+            branch.classList.remove('transition-link');
+            major.classList.remove('transition-link');
+            faculty_form.style.display = "block";
+            branch_form.style.display = "none";
+            major_form.style.display = "none";
+        }
+        function onShowDeleteBranch() {
+            const faculty = document.getElementById('faculty');
+            const branch = document.getElementById('branch');
+            const major = document.getElementById('major');
+            const faculty_form = document.getElementById('form_faculty');
+            const branch_form = document.getElementById('form_branch');
+            const major_form = document.getElementById('form_major');
+            faculty.classList.remove('transition-link');
+            branch.classList.add('transition-link');
+            major.classList.remove('transition-link');
+            faculty_form.style.display = "none";
+            branch_form.style.display = "block";
+            major_form.style.display = "none";
+        }
+        function onShowDeleteMajor() {
+            const faculty = document.getElementById('faculty');
+            const branch = document.getElementById('branch');
+            const major = document.getElementById('major');
+            const faculty_form = document.getElementById('form_faculty');
+            const branch_form = document.getElementById('form_branch');
+            const major_form = document.getElementById('form_major');
+            faculty.classList.remove('transition-link');
+            branch.classList.remove('transition-link');
+            major.classList.add('transition-link');
+            faculty_form.style.display = "none";
+            branch_form.style.display = "none";
+            major_form.style.display = "block";
+        }
+        function onClickDeleteAlert() {
+            const alert_text = document.getElementById('alert-item-delete');
+            const item_faculty = document.getElementById('SelectFaculty').value;
+            const item_branch = document.getElementById('SelectBranchIdDelete').value;
+            const item_major = document.getElementById('majorSelectIdDelete').value;
+            const confirmed_icon = document.getElementById('confirmed-icon');
+            const alert_container = document.getElementById('alert_container');
+            alert_container.style.display = "flex";
+            if (item_faculty) {
+                localStorage.setItem('id', item_faculty);
+                $.ajax({
+                    url: '@Url.Action("GetFacultyName", "FacultyBrachMajor")',
+                    type: 'GET',
+                    data: { facultyid: item_faculty },
+                    success: function (data) {
+                        alert_text.innerHTML = "คณะ : " + data.facultyName;
+                        localStorage.setItem('DeleteType', 1);
+                    }
+                })
+
+            }
+            if (item_branch) {
+                localStorage.setItem('id', item_branch);
+                $.ajax({
+                    url: '@Url.Action("GetBranchName", "FacultyBrachMajor")',
+                    type: 'GET',
+                    data: { branchId: item_branch },
+                    success: function (data) {
+                        alert_text.innerHTML = "สาขา : " + data.branchName;
+                        localStorage.setItem('DeleteType', 2);
+                    }
+                })
+            }
+
+            if (item_major) {
+                localStorage.setItem('id', item_major);
+                $.ajax({
+                    url: '@Url.Action("GetMajorName", "FacultyBrachMajor")',
+                    type: 'GET',
+                    data: { majorId: item_major },
+                    success: function (data) {
+                        alert_text.innerHTML = "วิชาเอก : " + data.majorName;
+                        localStorage.setItem('DeleteType', 3);
+                    }
+                })
+
+
+            }
+        }
+        function onClickDeleteConfirmed() {
+            const DeleteType = localStorage.getItem('DeleteType');
+            if (DeleteType == 1) {
+                const id = localStorage.getItem('id');
+                $.ajax({
+                    url: '@Url.Action("DeleteFaculty", "FacultyBrachMajor")',
+                    type: 'POST',
+                    data: { facultyId: id },
+                    success: function () {
+                        localStorage.removeItem('DeleteType');
+                        localStorage.removeItem('id');
+                        window.location.href = '@Url.Action("Index", "FacultyBrachMajor")';
+                    }
+                })
+            }
+            if (DeleteType == 2) {
+                const id = localStorage.getItem('id');
+                $.ajax({
+                    url: '@Url.Action("DeleteBranch", "FacultyBrachMajor")',
+                    type: 'POST',
+                    data: { branchId: id },
+                    success: function () {
+                        localStorage.removeItem('DeleteType');
+                        localStorage.removeItem('id');
+                        window.location.href = '@Url.Action("Index", "FacultyBrachMajor")';
+                    }
+                })
+            }
+            if (DeleteType == 3) {
+                console.log(DeleteType);
+                const id = localStorage.getItem('id');
+                number_id = parseInt(id);
+                $.ajax({
+                    url: '@Url.Action("DeleteMajor", "FacultyBrachMajor")',
+                    type: 'POST',
+                    data: { majorId: number_id },
+                    success: function () {
+                        localStorage.removeItem('id');
+                        localStorage.removeItem('DeleteType');
+                        window.location.href = '@Url.Action("Index", "FacultyBrachMajor")';
+                    }
+                })
+            }
+        }
+
+        function onClickDeleteCancel() {
+            const alert_container = document.getElementById('alert_container');
+            alert_container.style.display = "none";
+            localStorage.removeItem('DeleteType');
+            localStorage.removeItem('id');
+        }
+    </script>
+
+}

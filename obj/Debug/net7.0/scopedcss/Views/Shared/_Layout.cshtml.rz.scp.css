@@ -1,0 +1,137 @@
+*[b-k9swouxqfe] {
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-container[b-k9swouxqfe] {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 90px;
+  background-color: #040614;
+  -webkit-box-shadow: 0 9px 0 0.5px #1b2974;
+  -moz-box-shadow: 0 9px 0 0.5px #1b2974;
+  box-shadow: 0 9px 0 0.5px #1b2974;
+}
+
+.navbar-logo[b-k9swouxqfe] {
+  margin: 0 10px;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 40px;
+  font-weight: 800;
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-link-container[b-k9swouxqfe] {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.navbar__link[b-k9swouxqfe] {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar__link[b-k9swouxqfe],
+.navbar-link[b-k9swouxqfe] {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-link[b-k9swouxqfe] {
+  display: inline;
+  margin: 0 20px;
+  cursor: pointer;
+}
+
+.navbar-a-link[b-k9swouxqfe] {
+  color: white;
+  text-decoration: none;
+}
+
+.navbar-a-link:hover[b-k9swouxqfe] {
+  color: white;
+}
+
+.active-show[b-k9swouxqfe] {
+  background-color: #D9D9D9;
+  border-radius: 37px;
+  padding: 10px;
+  color: black;
+}
+
+/* a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+a {
+  color: #0077cc;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+button.accept-policy {
+  font-size: 1rem;
+  line-height: inherit;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+} */
+
+/* * {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.navbar-container {
+  width: 100vw;
+  background-color: gray;
+  height: 75px;
+  padding: 5px 15px 5px 15px;
+}
+
+.navbar-logo {
+  max-width: max-content;
+  font-size: 24px;
+  font-weight: 700;
+} */

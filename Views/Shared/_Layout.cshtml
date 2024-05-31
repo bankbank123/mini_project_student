@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Mini_Project</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/StudentCss.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/DeleteFacultyBranchMajor.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Mini_Project.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header>
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a asp-controller="Home" asp-action="Index" class="navbar-a-link">Student Data</a>
+            </div>
+            <div class="navbar-link-container">
+                <ul class="navbar__link">
+                    <li class="navbar-link">
+                        <a class="navbar-a-link" asp-controller="Home" asp-action="Index" id="Home-Link">หน้าหลัก</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a class="navbar-a-link" asp-controller="FacultyBrachMajor" asp-action="Index"
+                            id="FacultyBrachMajor">คณะ สาขา วิชาเอก</a>
+                    </li>
+                    <li class="navbar-link">
+                        <a class="navbar-a-link" asp-controller="Student" asp-action="Index"
+                            id="Student">ข้อมูลนักศึกษา</a>
+                    </li>
+                </ul>
+                <form asp-action="Search" method="get" asp-controller="Student" class="search-form">
+                    <div class="search-container">
+                        <label for="searchString">Search by Name:</label>
+                        <input type="text" id="searchString" name="searchString" />
+                        <input type="submit" value="Search" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </header>
+    <div class="p-3 main-container">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+    @* <footer class="border-top footer text-muted">
+    <div class="container">
+    &copy; 2567 - Mini_Project - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    </div>
+    </footer> *@
+
+    <script>
+        window.onload = function (e) {
+            const searchParams = window.location.pathname;
+            const Home_Link = document.getElementById('Home-Link');
+            const FacultyBrachMajor = document.getElementById('FacultyBrachMajor');
+            const Student = document.getElementById('Student');
+            if (searchParams == "/") {
+                Home_Link.classList.add('active-show')
+            }
+            if (searchParams == "/FacultyBrachMajor" || searchParams == "/FacultyBrachMajor/Delete") {
+                FacultyBrachMajor.classList.add('active-show')
+            }
+
+            if (searchParams == "/Student") {
+                Student.classList.add('active-show')
+            }
+        }
+    </script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

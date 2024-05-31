@@ -1,0 +1,79 @@
+﻿@model SearchViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>ตารางข้อมูลคณะ สาขา วิชาเอก</h2>
+<form asp-action="Index" method="get" class="my-2">
+    <div class="form-group my-2">
+        <input type="text" name="searchTerm" value="@Model.SearchTerm" class="form-control" placeholder="Search..." />
+    </div>
+    <input type="submit" value="Search" class="btn btn-primary my-1" />
+</form>
+<p>
+    <a asp-action="CreateFaculty" class="btn btn-outline-info">เพิ่มข้อมูลคณะ</a>
+    <a asp-action="CreateBrach" class="btn btn-outline-info">เพิ่มข้อมูลสาขา</a>
+    <a asp-action="CreateMajor" class="btn btn-outline-info">เพิ่มข้อมูลวิชาเอก</a>
+</p>
+<p>
+    <a asp-action="EditFaculty" class="btn btn-outline-warning">แก้ไขข้อมูลคณะ</a>
+    <a asp-action="EditBranch" class="btn btn-outline-warning">แก้ไขข้อมูลสาขา</a>
+    <a asp-action="EditMajor" class="btn btn-outline-warning">แก้ไขข้อมูลวิชาเอก</a> |
+    <a asp-action="Delete" class="btn btn-outline-danger">ลบข้อมูล</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                คณะ
+            </th>
+            <th>
+                สาขา
+            </th>
+            <th>
+                วิชาเอก
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Results)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FacultyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BranchName)
+                </td>
+                <td>
+                    @((item.MajorName == null) ? "-" : item.MajorName)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            @if (Model.PageNumber > 1)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageNumber - 1)" asp-route-searchTerm="@Model.SearchTerm">Previous</a>
+                </li>
+            }
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.PageNumber ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@i" asp-route-searchTerm="@Model.SearchTerm">@i</a>
+                </li>
+            }
+            @if (Model.PageNumber < Model.TotalPages)
+            {
+                <li class="page-item">
+                    <a class="page-link" asp-action="Index" asp-route-pageNumber="@(Model.PageNumber + 1)" asp-route-searchTerm="@Model.SearchTerm">Next</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>

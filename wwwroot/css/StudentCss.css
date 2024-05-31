@@ -1,0 +1,251 @@
+.create-student-page,
+.edit-student-page,
+.details-student-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.form-student-container,
+.details-container {
+    background-color: #EFEFEF;
+    border-radius: 97px;
+    padding: 45px;
+    max-width: 1075px;
+    width: 100%;
+    height: 100%;
+}
+
+.create-header,
+.create-sub-header {
+    font-size: 60px;
+    font-weight: 700;
+}
+
+.create-sub-header {
+    font-size: 38px;
+}
+
+.student-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-input-container {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.student-name,
+.student-year,
+.student-study,
+.student-address-text {
+    font-size: 20px;
+    font-weight: 600;
+    max-width: 250px;
+    width: 100%;
+}
+
+.student-address-text {
+    max-width: max-content;
+}
+
+.student-year {
+    max-width: max-content;
+    margin: 0 5px;
+}
+
+.student-dropdown-list {
+    max-width: 220px;
+    width: 100%;
+    font-size: 20px;
+}
+
+.student-header-container {
+    width: max-content;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.student-header-text {
+    width: 250px;
+}
+
+.student-input,
+.study-dropdown,
+.student-study-input1,
+.student-study-input2,
+.student-zipcode,
+.student-input-textarea {
+    max-width: 400px;
+    max-height: 200px;
+    width: 100%;
+    font-size: 20px;
+    padding: 0 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.30);
+}
+
+.student-input-family {
+    text-align: center;
+    max-width: 50px;
+}
+
+.student-container {
+    margin: 20px 0;
+}
+
+.student-zipcode {
+    max-width: 150px;
+    width: 100%;
+    font-size: 20px;
+    padding: 0 5px;
+}
+
+.student-input-year {
+    text-align: center;
+    max-width: 90px;
+}
+
+.student-textarea-container {
+    display: flex;
+    align-items: center;
+}
+
+
+
+.student-input-study-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.student-study-column1,
+.student-study-column2 {
+    display: flex;
+    flex-direction: column;
+}
+
+.student-study-column1 {
+    max-width: 500px;
+    width: 100%;
+}
+
+.student-study-input2 {
+    max-width: 75px;
+}
+
+.major-dropdown {
+    max-width: 250px;
+}
+
+.details-header {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.details-history-container,
+.details-education-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.details-history-column-1,
+.details-history-column-2,
+.details-education-column {
+    margin: 0 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 450px;
+    width: 100%;
+}
+
+.details-education-column {
+    max-width: 550px;
+}
+
+.details-education-column-2 {
+    max-width: 250px;
+}
+
+.details-history-info {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+.details-history-info-header,
+.details-education-header {
+    margin: 5px 0;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.details-history-info-des,
+.details-education-des {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.age-gender {
+    flex-direction: row;
+}
+
+.details-info-age-gender {
+    display: flex;
+    flex-direction: column;
+}
+
+.details-info-age-gender {
+    max-width: 250px;
+    width: 100%;
+}
+
+.details-education-space-row {
+    height: 94px;
+}
+
+.education-button-container {
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.education-btn {
+    margin: 0 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 200px;
+    width: 100%;
+    height: 60px;
+    text-decoration: none;
+    background-color: black;
+    border-radius: 25px;
+    color: white;
+    font-size: 28px;
+    font-weight: 700;
+    -webkit-box-shadow: 5px 6.5px 3.5px 3px #ffa800;
+    -moz-box-shadow: 5px 6.5px 3.5px 3px #ffa800;
+    box-shadow: 5px 6.5px 3.5px 3px #ffa800;
+    transition: .5s;
+}
+
+.education-btn:hover {
+    background-color: white;
+    color: black;
+}
+
+.delete-header {
+    text-align: center;
+    font-size: 60px;
+    font-weight: 700;
+    color: red;
+}
+
+.education-btn-delete {
+    background-color: red;
+    border: none;
+}

@@ -1,0 +1,497 @@
+﻿@model Mini_Project.ViewModels.StudentFamilyViewModel
+
+@*
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="edit-student-page">
+    <form asp-action="Edit" method="post" class="form-student-container">
+        <input type="hidden" asp-for="Student.StudentId" >
+        <div class="create-header">
+            สร้างข้อมูล
+        </div>
+        <div class="create-sub-header">
+            ประวัติส่วนตัว
+        </div>
+        <hr />
+        <div class="student-container">
+            <div class="student-input-container">
+                <label class="student-name">คำนำหน้า</label>
+                <select class="student-dropdown-list" asp-for="Student.StudentPrefixId"
+                    asp-items="ViewBag.StudentPrefixId">
+                    <option value="">เลือกคำนำหน้า</option>
+                </select>
+            </div>
+            <div class="student-input-container">
+                <label class="student-name">ชื่อ</label>
+                <input type="text" asp-for="Student.StudentFirstName" class="student-input">
+            </div>
+            <div class="student-input-container">
+                <label class="student-name">ชื่อกลาง (ถ้ามี)</label>
+                <input type="text" class="student-input" asp-for="Student.StudentMiddleName">
+            </div>
+            <div class="student-input-container">
+                <label class="student-name">นามสกุล</label>
+                <input type="text" class="student-input" asp-for="Student.StudentLastName">
+            </div>
+            <div class="student-input-container">
+                <label class="student-name">เพศ</label>
+                <select class="student-dropdown-list" asp-for="Student.StudentGenderId" asp-items="ViewBag.GenderId">
+                    <option value="">เลือกเพศ</option>
+                </select>
+            </div>
+            <div class="student-input-container">
+                <label class="student-name">อายุ</label>
+                <input type="number" class="student-input student-input-year" asp-for="Student.StudentAge">
+                <label class="student-year">ปี</label>
+            </div>
+        </div>
+
+        <div class="student-container">
+            <div class="student-header-container">
+                ที่อยู่ตามภูมิลำเนา
+            </div>
+            <div class="student-input-container student-textarea-container">
+                <label class="student-name">ที่อยู่</label>
+                <textarea class="student-input-textarea" asp-for="AddressHomeland.AddressHomeland1"
+                    id="homeland_StudentAddressHomeland"></textarea>
+            </div>
+            <div class="student-input-container">
+                <label class="student-name">จังหวัด</label>
+                <select class="student-dropdown-list" id="homeland_provinceSelect" asp-items="ViewBag.ThaiProvinceId"
+                    asp-for="AddressHomeland.AddressHomelandProvinceId">
+                    <option value="">เลือกจังหวัด</option>
+                </select>
+            </div>
+            <div class="student-input-container">
+                <label class="student-name">อำเภอ / เขต</label>
+                <select class="student-dropdown-list" id="homeland_amphuresSelect"
+                    asp-for="AddressHomeland.AddressHomelandAmphureId" asp-items="ViewBag.ThaiAmphuresId">
+                    <option value="">เลือกอำเภอ</option>
+                </select>
+            </div>
+            <div class="student-input-container">
+                <label class="student-name">ตำบล / แขวง</label>
+                <select class="student-dropdown-list" id="homeland_tambonSelect"
+                    asp-for="AddressHomeland.AddressHomelandTambonId" asp-items="ViewBag.ThaiTambonsId">
+                    <option value="">เลือกตำบล / แขวง</option>
+                </select>
+            </div>
+            <div class="student-input-container">
+                <label class="student-name">รหัสไปรษณีย์</label>
+                <input type="text" class="student-zipcode" id="homeland_zipcode_input" disabled
+                    asp-for="ZipCodeHomeland" />
+            </div>
+        </div>
+
+        <div class="student-container">
+            <div class="student-header-container">
+                <label class="student-header-text">ที่อยู่ปัจจุบัน</label>
+                <input type="checkbox" id="address_checked" asp-for="SameAddress" value=true>
+                <label class="student-address-text">ที่อยู่ตามภูมิลำเนา</label>
+            </div>
+            <div class="student-input-container student-textarea-container">
+                <label class="student-name">ที่อยู่</label>
+                <textarea class="student-input-textarea" asp-for="AddressPresent.AddressPresent1"
+                    id="present_StudentAddressHomeland"></textarea>
+            </div>
+            <div class="student-input-container">
+                <label class="student-name">จังหวัด</label>
+                <select class="student-dropdown-list" id="present_provinceSelect" asp-items="ViewBag.ThaiProvinceId"
+                    asp-for="AddressPresent.AddressPresentProvinceId">
+                    <option value="">เลือกจังหวัด</option>
+                </select>
+            </div>
+            <div class="student-input-container">
+                <label class="student-name">อำเภอ / เขต</label>
+                <select class="student-dropdown-list" id="present_amphuresSelect"
+                    asp-for="AddressPresent.AddressPresentAmphureId" asp-items="ViewBag.ThaiAmphuresId">
+                    <option value="">เลือกอำเภอ</option>
+                </select>
+            </div>
+            <div class="student-input-container">
+                <label class="student-name">ตำบล / แขวง</label>
+                <select class="student-dropdown-list" id="present_tambonSelect"
+                    asp-for="AddressPresent.AddressPresentTambonId" asp-items="ViewBag.ThaiTambonsId">
+                    <option value="">เลือกตำบล / แขวง</option>
+                </select>
+            </div>
+            <div class="student-input-container">
+                <label class="student-name">รหัสไปรษณีย์</label>
+                <input type="text" class="student-zipcode" id="present_zipcode_input" disabled asp-for="ZipCodePresent">
+            </div>
+        </div>
+        <div class="student-container">
+            <div class="student-header-container">
+                <label class="student-header-text">สมาชิกในครอบครัว</label>
+            </div>
+            <div class="student-input-container student-textarea-container">
+                <label class="student-name">มีสมาชิกในครอบครัว</label>
+                <input type="number" id="family_number" class="student-input student-input-family"
+                    asp-for="FamilyNumber">
+                <label class="student-year">คน</label>
+            </div>
+            <div id="family_members_container">
+            </div>
+        </div>
+        <div class="create-sub-header">
+            ประวัติการศึกษา
+        </div>
+        <hr />
+        <div class="student-container">
+            <div class="student-input-study-container">
+                <div class="student-study-column1">
+                    <label class="student-study">ระดับประถมศึกษา</label>
+                    <input type="text" asp-for="ElementarySchool.ElementarySchoolName" class="student-study-input1">
+                </div>
+                <div class="student-study-column2">
+                    <label class="student-study">GPAX</label>
+                    <input type="number" step="any" min="0" max="4" asp-for="ElementarySchool.ElementarySchoolGrade"
+                        class="student-study-input2">
+                </div>
+            </div>
+        </div>
+        <div class="student-container">
+            <div class="student-input-study-container">
+                <div class="student-study-column1">
+                    <label class="student-study">ระดับมัธยมตอนต้น</label>
+                    <input type="text" asp-for="JhighSchool.JhighSchoolName" class="student-study-input1">
+                </div>
+                <div class="student-study-column2">
+                    <label class="student-study">GPAX</label>
+                    <input type="number" step="any" min="0" max="4" asp-for="JhighSchool.JhighSchoolGrade"
+                        class="student-study-input2">
+                </div>
+            </div>
+        </div>
+        <div class="student-container">
+            <div class="student-input-study-container">
+                <div class="student-study-column1">
+                    <label class="student-study">ระดับมัธยมตอนปลาย</label>
+                    <input type="text" asp-for="ShighSchool.ShighSchoolName" class="student-study-input1">
+                </div>
+                <div class="student-study-column2">
+                    <label class="student-study">GPAX</label>
+                    <input type="number" step="any" min="0" max="4" asp-for="ShighSchool.ShighSchoolGrade"
+                        class="student-study-input2">
+                </div>
+            </div>
+        </div>
+        <div class="student-container">
+            <div class="student-input-study-container">
+                <div class="student-study-column1">
+                    <label class="student-study">ปัจจุบันกำลังศึกษาอยู่ที่</label>
+                    <input type="text" value="มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี" class="student-study-input1"
+                        disabled>
+                </div>
+            </div>
+        </div>
+        <div class="student-container">
+            <div class="student-input-study-container">
+                <div class="student-study-column1">
+                    <label class="student-study">คณะ</label>
+                    <select class="student-dropdown-list study-dropdown" id="SelectFacultyId"
+                        asp-for="Student.StudentFacultyId" asp-items="ViewBag.FacultyId">
+                        <option value="">เลือกคณะ</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="student-container">
+            <div class="student-input-study-container">
+                <div class="student-study-column1">
+                    <label class="student-study">สาขาวิชา</label>
+                    <select class="student-dropdown-list study-dropdown" id="branchSelectId"
+                        asp-for="Student.StudentBranchId">
+                        <option value="">เลือกสาขา</option>
+                    </select>
+                </div>
+                <div class="student-study-column2">
+                    <label class="student-study">วิชาเอก</label>
+                    <select class="student-dropdown-list study-dropdown major-dropdown" id="majorSelectId"
+                        asp-for="Student.StudentMajorId">
+                        <option value="">เลือกวิชาเอก</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="student-controller">
+            <a asp-controller="Student" asp-action="Index">Back</a>
+            <input type="submit" class="btn btn-primary">
+        </div>
+
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#SelectFacultyId').change(function () {
+                var facultyId = $(this).val();
+                var branchSelect = $('#branchSelectId');
+                branchSelect.empty();
+                branchSelect.append('<option value="">เลือกสาขา</option>');
+                if (facultyId) {
+                    $.ajax({
+                        url: '@Url.Action("GetBranchesByFacultyId", "FacultyBrachMajor")',
+                        type: 'GET',
+                        data: { facultyId: facultyId },
+                        success: function (data) {
+                            $.each(data, function (index, branch) {
+                                branchSelect.append('<option value="' + branch.branchId + '">' + branch.branchName + '</option>');
+                            });
+                        }
+                    });
+                }
+            });
+
+            $('#branchSelectId').change(function () {
+                var branchSelectId = $(this).val();
+                var majorSelectId = $('#majorSelectId');
+                branchSelectId = parseInt(branchSelectId);
+                majorSelectId.empty();
+                majorSelectId.append('<option value="">เลือกวิชาเอก</option>')
+
+                if (branchSelectId) {
+                    $.ajax({
+                        url: '@Url.Action("GetMajorNameByBranch", "FacultyBrachMajor")',
+                        type: 'GET',
+                        data: {
+                            branchId: branchSelectId
+                        },
+                        success: function (data) {
+                            $.each(data, function (index, major) {
+                                majorSelectId.append('<option value="' + major.majorId + '">' + major.majorName + '</option>');
+                            });
+                        }
+                    });
+                }
+            });
+            
+            $('#family_number').change(function () {
+                var family_number = $(this).val();
+                var family_members_container = $('#family_members_container');
+
+                // Clear any existing inputs
+                family_members_container.empty();
+
+                // Generate input fields based on the number entered
+                for (var i = 0; i < family_number; i++) {
+                    family_members_container.append(`
+                        <div class="student-input-container">
+                            <label class="student-name">คนที่ ${i + 1} เกี่ยวข้องเป็น</label>
+                            <input type="text" class="student-input" name="Families[${i}].FamilyRole" />
+                        </div>
+                    `);
+                }
+            });
+
+            // Handle initial population
+            $('#family_number').change();
+            $('#address_checked').change(function () {
+                var homeland_StudentAddressHomeland = $('#homeland_StudentAddressHomeland').val();
+                var homeland_provinceSelect = $('#homeland_provinceSelect').val();
+                var homeland_amphuresSelect = $('#homeland_amphuresSelect').val();
+                var homeland_tambonSelect = $('#homeland_tambonSelect').val();
+                var homeland_zipcode_input = $('#homeland_zipcode_input').val();
+
+                var present_StudentAddressHomeland = $('#present_StudentAddressHomeland');
+                var present_provinceSelect = $('#present_provinceSelect');
+                var present_amphuresSelect = $('#present_amphuresSelect');
+                var present_tambonSelect = $('#present_tambonSelect');
+                var present_zipcode_input = $('#present_zipcode_input');
+
+                if (this.checked) {
+                    // Copy values directly
+                    present_StudentAddressHomeland.val(homeland_StudentAddressHomeland);
+                    $.ajax({
+                        url: '@Url.Action("GetProvince", "Address")',
+                        type: 'GET',
+                        data: {
+                            ProvinceId: parseInt(homeland_provinceSelect),
+                        },
+                        success: function (data) {
+                            $('#present_provinceSelect').html('<select class="student-dropdown-list" id="present_provinceSelect" asp-items="ViewBag.ThaiProvinceId" asp-for="AddressPresent.AddressPresentProvinceId"><option value="' + parseInt(data.id) + '">' + data.nameTh + '</option></select>');
+                        }
+                    })
+                    $.ajax({
+                        url: '@Url.Action("GetAmphure", "Address")',
+                        type: 'GET',
+                        data: {
+                            AmphureId: parseInt(homeland_amphuresSelect),
+                        },
+                        success: function (data) {
+                            $('#present_amphuresSelect').html('<select class="student-dropdown-list" id="present_amphuresSelect" asp-for="AddressPresent.AddressPresentAmphureId"><option value="' + parseInt(data.id) + '">' + data.nameTh + '</option></select>');
+                        }
+                    })
+                    $.ajax({
+                        url: '@Url.Action("GetTambon", "Address")',
+                        type: 'GET',
+                        data: {
+                            TambonId: parseInt(homeland_tambonSelect),
+                        },
+                        success: function (data) {
+                            $('#present_tambonSelect').html('<select class="student-dropdown-list" id="present_tambonSelect" asp-for="AddressPresent.AddressPresentTambonId"><option value="' + parseInt(data.id) + '">' + data.nameTh + '</option></select>');
+                        }
+                    })
+                    present_zipcode_input.val(homeland_zipcode_input);
+                    // Disable the present address fields
+                    present_StudentAddressHomeland.prop('disabled', true);
+                    present_provinceSelect.prop('disabled', true);
+                    present_amphuresSelect.prop('disabled', true);
+                    present_tambonSelect.prop('disabled', true);
+                    present_zipcode_input.prop('disabled', true);
+                } else {
+                    // Clear the present address fields if unchecked
+                    present_StudentAddressHomeland.val('');
+                    present_provinceSelect.empty().append('<option value="">เลือกจังหวัด</option>');
+                    present_amphuresSelect.empty().append('<option value="">เลือกอำเภอ</option>');
+                    present_tambonSelect.empty().append('<option value="">เลือกตำบล</option>');
+                    present_zipcode_input.val('');
+
+                    @foreach (var province in ViewBag.ThaiProvinceId)
+                    {
+                        <text>
+                            present_provinceSelect.append('<option value="@province.Value">@province.Text</option>');
+                        </text>
+                    }
+
+                    present_StudentAddressHomeland.prop('disabled', false);
+                    present_provinceSelect.prop('disabled', false);
+                    present_amphuresSelect.prop('disabled', false);
+                    present_tambonSelect.prop('disabled', false);
+                    present_zipcode_input.prop('disabled', false);
+                }
+            });
+            $('#homeland_provinceSelect').change(function () {
+                var homeland_provinceSelect = $(this).val();
+                var homeland_amphuresSelect = $('#homeland_amphuresSelect');
+                homeland_provinceSelect = parseInt(homeland_provinceSelect);
+                homeland_amphuresSelect.empty();
+                homeland_amphuresSelect.append('<option value="">เลือกอำเภอ / เขต</option>')
+                $.ajax({
+                    url: '@Url.Action("GetAmphureByProvince", "Address")',
+                    type: 'GET',
+                    data: {
+                        ProvinceId: homeland_provinceSelect
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        $.each(data, function (index, amphure) {
+                            homeland_amphuresSelect.append('<option value="' + amphure.id + '">' + amphure.nameTh + '</option>')
+                        })
+                    }
+                });
+            })
+
+            $('#homeland_amphuresSelect').change(function () {
+                var homeland_amphuresSelect = $(this).val();
+                var homeland_tambonSelect = $('#homeland_tambonSelect');
+                homeland_amphuresSelect = parseInt(homeland_amphuresSelect);
+                homeland_tambonSelect.empty();
+                homeland_tambonSelect.append('<option value="">เลือกตำบล / แขวง</option>')
+                console.log(typeof (homeland_amphuresSelect))
+                console.log(homeland_amphuresSelect)
+                $.ajax({
+                    url: '@Url.Action("GetTambonByAmphure", "Address")',
+                    type: 'GET',
+                    data: {
+                        AmphureId: homeland_amphuresSelect
+                    },
+                    success: function (data) {
+                        console.log(data)
+                        $.each(data, function (index, tambons) {
+                            homeland_tambonSelect.append('<option value="' + tambons.id + '">' + tambons.nameTh + '</option>')
+                        })
+                    }
+                });
+            })
+
+            $('#homeland_tambonSelect').change(function () {
+                var homeland_tambonSelect = $(this).val();
+                var homeland_zipcode_input = $('#homeland_zipcode_input')
+                homeland_zipcode_input.val('')
+                homeland_tambonSelect = parseInt(homeland_tambonSelect)
+                if (homeland_tambonSelect) {
+                    $.ajax({
+                        url: '@Url.Action("GetZipCode", "Address")',
+                        type: 'GET',
+                        data: {
+                            TambonId: homeland_tambonSelect
+                        },
+                        success: function (data) {
+                            homeland_zipcode_input.val(data.zipCode);
+                        }
+                    })
+                }
+            })
+
+            $('#present_provinceSelect').change(function () {
+                var present_provinceSelect = $(this).val();
+                var present_amphuresSelect = $('#present_amphuresSelect');
+                present_provinceSelect = parseInt(present_provinceSelect);
+                present_amphuresSelect.empty();
+                present_amphuresSelect.append('<option value="">เลือกอำเภอ / เขต</option>')
+                if (present_provinceSelect) {
+                    $.ajax({
+                        url: '@Url.Action("GetAmphureByProvince", "Address")',
+                        type: 'GET',
+                        data: {
+                            ProvinceId: present_provinceSelect
+                        },
+                        success: function (data) {
+                            console.log(data)
+                            $.each(data, function (index, amphure) {
+                                present_amphuresSelect.append('<option value="' + amphure.id + '">' + amphure.nameTh + '</option>')
+                            })
+                        }
+                    })
+                }
+            })
+            $('#present_amphuresSelect').change(function () {
+                var present_amphuresSelect = $(this).val();
+                var present_tambonSelect = $('#present_tambonSelect');
+                present_amphuresSelect = parseInt(present_amphuresSelect);
+                present_tambonSelect.empty();
+                present_tambonSelect.append('<option value="">เลือกตำบล / แขวง</option>')
+                if (present_provinceSelect) {
+                    $.ajax({
+                        url: '@Url.Action("GetTambonByAmphure", "Address")',
+                        type: 'GET',
+                        data: {
+                            AmphureId: present_amphuresSelect
+                        },
+                        success: function (data) {
+                            console.log(data)
+                            $.each(data, function (index, tambons) {
+                                present_tambonSelect.append('<option value="' + tambons.id + '">' + tambons.nameTh + '</option>')
+                            })
+                        }
+                    })
+                }
+            })
+
+            $('#present_tambonSelect').change(function () {
+                var present_tambonSelect = $(this).val();
+                var present_zipcode_input = $('#present_zipcode_input')
+                present_zipcode_input.val('')
+                present_tambonSelect = parseInt(present_tambonSelect)
+                if (present_tambonSelect) {
+                    $.ajax({
+                        url: '@Url.Action("GetZipCode", "Address")',
+                        type: 'GET',
+                        data: {
+                            TambonId: present_tambonSelect
+                        },
+                        success: function (data) {
+                            console.log(data)
+                            present_zipcode_input.val(data.zipCode);
+                        }
+                    })
+                }
+            })
+        })
+    </script>
+}

@@ -1,0 +1,117 @@
+﻿@model Mini_Project.Models.Major
+
+@{
+    ViewData["Title"] = "EditMajor";
+}
+
+<h1>EditMajor</h1>
+
+<h4>Major</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditMajor">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">คณะ</label>
+                <select id="SelectFacultyId" class="form-control" asp-items="ViewBag.FacultyId">
+                    <option value="">เลือกคณะ</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">สาขา</label>
+                <select asp-for="BranchId" id="branchSelectId" class="form-control">
+                    <option value="">เลือกสาขา</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">วิชาเอกเดิม</label>
+                <select asp-for="MajorId" id="majorSelectId" class="form-control">
+                    <option value="">เลือกวิชาเอก</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">วิชาเอกใหม่</label>
+
+                <input type="text" asp-for="MajorName" class="form-control" id="majorNameInput" disabled />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary my-1" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts{
+    <script>
+
+        $(document).ready(function (){
+            $('#SelectFacultyId').change(function () {
+                var facultyId = $(this).val();
+                var branchSelect = $('#branchSelectId');
+                branchSelect.empty();
+                branchSelect.append('<option value="">เลือกสาขา</option>');
+                if (facultyId) {
+                    $.ajax({
+                        url: '@Url.Action("GetBranchesByFacultyId", "FacultyBrachMajor")',
+                        type: 'GET',
+                        data: { facultyId: facultyId },
+                        success: function (data) {
+                            $.each(data, function (index, branch) {
+                                branchSelect.append('<option value="' + branch.branchId + '">' + branch.branchName + '</option>');
+                            });
+                        }
+                    });
+                }
+            });
+            
+            $('#branchSelectId').change(function (){
+                var branchSelectId = $(this).val();
+                var majorSelectId = $('#majorSelectId');
+                branchSelectId = parseInt(branchSelectId);
+                majorSelectId.empty();
+                majorSelectId.append('<option value="">เลือกวิชาเอก</option>')
+
+                if (branchSelectId) {
+                    $.ajax({
+                        url: '@Url.Action("GetMajorNameByBranch","FacultyBrachMajor")',
+                        type: 'GET',
+                        data: {
+                            branchId: branchSelectId
+                        },
+                        success: function(data) {
+                            $.each(data, function (index, major) {
+                                majorSelectId.append('<option value="' + major.majorId + '">' + major.majorName + '</option>');
+                            });
+                        }
+                    });
+                }
+            });
+            $('#majorSelectId').change(function () {
+                var majorSelectId = $(this).val();
+                var majorNameInput = $('#majorNameInput');
+                majorSelectId = parseInt(majorSelectId);
+                majorNameInput.val('');
+                if (majorSelectId) {
+                    $.ajax({
+                        url: '@Url.Action("GetMajorName", "FacultyBrachMajor")',
+                        type: 'GET',
+                        data: {
+                            majorId: majorSelectId,
+                        },
+                        success: function (data) {
+                            majorNameInput.val(data.majorName);
+                            majorNameInput.prop('disabled', false);
+                        }
+                    });
+                } else {
+                    majorNameInput.prop('disabled', true);
+                }
+            })
+        })
+    </script>
+}

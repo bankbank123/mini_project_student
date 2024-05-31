@@ -1,0 +1,173 @@
+﻿@model Mini_Project.ViewModels.StudentDetailsViewModel
+
+
+<div class="details-student-page">
+
+    <div class="details-container">
+        
+        <h1 class="delete-header">ข้อมูลนักศึกษาที่ค้นหา</h1>
+        <div class="details-header">
+            ประวัติส่วนตัว
+        </div>
+        <div class="details-history-container">
+            <div class="details-history-column-1 details-history-column">
+                <input type="hidden" asp-for="Student.StudentId">
+                <div class="details-history-info">
+                    <div class="details-history-info-header">
+                        ชื่อ
+                    </div>
+                    <div class="details-history-info-des">
+                        @Model.Student.StudentFirstName @Model.Student.StudentMiddleName @Model.Student.StudentLastName
+                    </div>
+                </div>
+                <div class="details-history-info">
+                    <div class="details-history-info-header">
+                        ที่อยู่ตามภูมิลำเนา
+                    </div>
+                    <div class="details-history-info-des">
+                        @Model.AddressHomeland.AddressHomeland1 แขวง @Model.AddressHomelandTambon
+                        @Model.AddressHomelandAmphure จังหวัด @Model.AddressHomelandProvince
+                        @Model.AddressHomelandZipCode
+                    </div>
+                </div>
+                <div class="details-history-info">
+                    <div class="details-history-info-header">
+                        ที่อยู่ตามปัจจุบัน
+                    </div>
+                    <div class="details-history-info-des">
+                        @Model.AddressPresent.AddressPresent1 แขวง @Model.AddressPresentTambon
+                        @Model.AddressPresentAmphure จังหวัด @Model.AddressPresentProvince @Model.AddressPresentZipCode
+                    </div>
+                </div>
+            </div>
+            <div class="details-history-column-2">
+                <div class="details-history-info age-gender">
+                    <div class="details-info-age-gender">
+                        <div class="details-history-info-header">
+                            อายุ
+                        </div>
+                        <div class="details-history-info-des">
+                            @Model.Student.StudentAge
+                        </div>
+                    </div>
+                    <div class="details-info-age-gender">
+                        <div class="details-history-info-header">
+                            เพศ
+                        </div>
+                        <div class="details-history-info-des">
+                            @Model.Student.StudentGender.GenderName
+                        </div>
+                    </div>
+                </div>
+                <div class="details-history-info">
+                    <div class="details-history-info-header">
+                        สมาชิกในครอบครัว
+                    </div>
+                    <div class="details-history-info-des">
+                        @Model.Families.Count คน
+                        @foreach (var item in Model.Families)
+                        {
+                            <span>@item.FamilyRole</span>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="details-header">
+            ประวัติการศึกษา
+        </div>
+        <div class="details-education-container">
+            <div class="details-education-column">
+                <div class="details-education-row">
+                    <div class="details-education-header">
+                        ระดับประถมศึกษา
+                    </div>
+                    <div class="details-education-des">
+                        @Model.Student.StudentElementarySchool.ElementarySchoolName
+                    </div>
+                </div>
+                <div class="details-education-row">
+                    <div class="details-education-header">
+                        ระดับมัธยมศึกษาตอนต้น
+                    </div>
+                    <div class="details-education-des">
+                        @Model.Student.StudentJhighSchool.JhighSchoolName
+                    </div>
+                </div>
+                <div class="details-education-row">
+                    <div class="details-education-header">
+                        ระดับมัธยมศึกษาตอนปลาย
+                    </div>
+                    <div class="details-education-des">
+                        @Model.Student.StudentShighSchool.ShighSchoolName
+                    </div>
+                </div>
+                <div class="details-education-row">
+                    <div class="details-education-header">
+                        ปัจจุบันกำลังศึกษาอยู่ที่
+                    </div>
+                    <div class="details-education-des">
+                        มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี
+                    </div>
+                </div>
+                <div class="details-education-row">
+                    <div class="details-education-header">
+                        คณะ
+                    </div>
+                    <div class="details-education-des">
+                        @Model.Student.StudentFaculty.FacultyName
+                    </div>
+                </div>
+                <div class="details-education-row">
+                    <div class="details-education-header">
+                        สาขาวิชา
+                    </div>
+                    <div class="details-education-des">
+                        @Model.Student.StudentBranch.BranchName
+                    </div>
+                </div>
+            </div>
+            <div class="details-education-column details-education-column-2">
+                <div class="details-education-row">
+                    <div class="details-education-header">
+                        เกรดเฉลี่ย
+                    </div>
+                    <div class="details-education-des">
+                        @Model.Student.StudentElementarySchool.ElementarySchoolGrade
+                    </div>
+                </div>
+                <div class="details-education-row">
+                    <div class="details-education-header">
+                        เกรดเฉลี่ย
+                    </div>
+                    <div class="details-education-des">
+                        @Model.Student.StudentJhighSchool.JhighSchoolGrade
+                    </div>
+                </div>
+                <div class="details-education-row">
+                    <div class="details-education-header">
+                        เกรดเฉลี่ย
+                    </div>
+                    <div class="details-education-des">
+                        @Model.Student.StudentShighSchool.ShighSchoolGrade
+                    </div>
+                </div>
+                <div class="details-education-row details-education-space-row">
+                </div>
+                <div class="details-education-row details-education-space-row">
+                </div>
+                <div class="details-education-row">
+                    <div class="details-education-header">
+                        วิชาเอก
+                    </div>
+                    <div class="details-education-des">
+                        @Model.Student.StudentMajor?.MajorName
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="education-button-container">
+            <a class="education-btn" asp-action="Index" asp-controller="Student">Back to List</a>
+        </div>
+    </div>
+</div>

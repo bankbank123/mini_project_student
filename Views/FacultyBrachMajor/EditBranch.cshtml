@@ -1,0 +1,93 @@
+﻿@model Mini_Project.Models.Branch
+
+@{
+    ViewData["Title"] = "EditBranch";
+}
+
+<h1>EditBranch</h1>
+
+<h4>Branch</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditBranch">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label class="control-label">คณะ</label>
+                <select id="SelectFacultyId" asp-for="FacultyId" class="form-control" asp-items="ViewBag.FacultyId">
+                    <option value="">เลือกคณะ</option>
+                </select>
+                <span asp-validation-for="FacultyId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">สาขาเดิม</label>
+                <select asp-for="BranchId" id="branchSelect" class="form-control">
+                    <option value="">เลือกสาขา</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="control-label">สาขาใหม่</label>
+                <input asp-for="BranchName" class="form-control" id="branchname_input" disabled/>
+                <span asp-validation-for="BranchName" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#SelectFacultyId').change(function () {
+                var facultyId = $(this).val();
+                var branchSelect = $('#branchSelect');
+                branchSelect.empty();
+                branchSelect.append('<option value="">เลือกสาขา</option>');
+                if (facultyId) {
+                    $.ajax({
+                        url: '@Url.Action("GetBranchesByFacultyId", "FacultyBrachMajor")',
+                        type: 'GET',
+                        data: { facultyId: facultyId },
+                        success: function (data) {
+                            $.each(data, function (index, branch) {
+                                branchSelect.append('<option value="' + branch.branchId + '">' + branch.branchName + '</option>');
+                            });
+                        }
+                    });
+                }
+            });
+            $('#branchSelect').change(function () {
+                var branchSelectId = $(this).val();
+                var branchName = $('#branchname_input');
+                var branchSelectId = parseInt(branchSelectId);
+                branchName.val('');
+                console.log(typeof (branchSelectId));
+                if (branchSelectId) {
+                    $.ajax({
+                        url: '@Url.Action("GetBranchName","FacultyBrachMajor")',
+                        type: 'GET',
+                        data: {
+                            branchId: branchSelectId,
+                        },
+                        success: function (data) {
+                            if (data) {
+                                branchName.val(data.branchName);
+                                branchName.prop('disabled', false);
+                            }
+                        },
+                    });
+                } else {
+                    branchName.prop('disabled', true);
+                }
+            })
+        })
+    </script>
+}

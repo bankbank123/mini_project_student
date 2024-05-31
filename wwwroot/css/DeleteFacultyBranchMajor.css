@@ -1,0 +1,95 @@
+.delete-container {
+    max-width: 500px;
+    width: 100%;
+}
+
+.navbar-delete-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.navbar-delete {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    max-width: max-content;
+    height: 50px;
+    cursor: pointer;
+    background-color: white;
+    border: none;
+    color: black;
+    transition: .5s;
+}
+
+.transition-link {
+    background-color: #0d6efd;
+    color: white
+}
+
+.form-container {
+    display: none;
+}
+
+.delete-container {
+    max-width: 500px;
+    width: 100%;
+}
+
+.alert-container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    max-width: 500px;
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    background-color: white;
+    justify-content: space-around;
+    color: black;
+    padding: 10px;
+    -webkit-box-shadow: 3px 3px 10px 3px #dddddd;
+    -moz-box-shadow: 3px 3px 10px 3px #dddddd;
+    box-shadow: 3px 3px 10px 3px #dddddd;
+}
+
+.alert-icon,
+.cancel-icon {
+    color: red;
+}
+
+.alert-text-container {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.confirmed-icon,
+.cancel-icon {
+    cursor: pointer;
+}
+
+.confirmed-icon {
+    color: green;
+}
+
+.alert-confirmed-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.alert-text-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
